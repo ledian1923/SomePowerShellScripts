@@ -2,19 +2,19 @@
 SET THE TASK SCHEDULER FOR AUTOMATIC EXECUTION
 Action = Start a program 
 Program/Script = powershell.exe
-Arguments = -ExecutionPolicy Bypass -File C:\PSscripts\TBFBACKUP-v4.ps1 -WindowStyle hidden
+Arguments = -ExecutionPolicy Bypass -File C:\PSscripts\BACKUP-v4.ps1 -WindowStyle hidden
 #>
 
 
 #DATABASE
-$dbBackupDest = 'C:\tbfbackup\Database'
+$dbBackupDest = 'C:\backup\Database'
 $mySqlDir = 'C:\Program Files (x86)\Parallels\Plesk\MySQL\bin'
 $mongoDir = 'C:\Program Files\MongoDB\Server\3.0\bin'
 
 #BackupRetention
 $numberofBackups = 5
 
-#MYTBF FILES DIR
+#FILES DIR
 $fileDir = @(
                 "path of the directory to be copied it can be multiple path separated by comma each path"
             )
@@ -56,7 +56,7 @@ Start-Transcript -Path $logPath -Force
   }
 
   if (! (Test-Path 'C:\logpath\logs') ) {
-    New-Item -ItemType directory -Path 'C:\tbfbackup\logs'
+    New-Item -ItemType directory -Path 'C:\backup\logs'
   }
 
 # Create files directory if not yet created and copy all mytacobellfoundation.com files to files directory
